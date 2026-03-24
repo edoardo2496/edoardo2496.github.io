@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edoardo Crema — Firm Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --accent: #c8a96e;
+      --accent-dim: rgba(200,169,110,0.15);
+      --text: #e8e4dc;
+      --muted: #6b6560;
+      --bright: #f5f0e8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(10,10,10,0.92);
+      border-color: var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 4rem;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -10%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(ellipse, rgba(200,169,110,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
+      line-height: 1.05;
+      color: var(--bright);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.35s forwards;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 44ch;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.5s forwards;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.65s forwards;
+    }
+    .btn-primary {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: var(--accent);
+      color: #0a0a0a;
+      padding: 0.9rem 2rem;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-ghost {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
+
+    /* Hero right — stat grid */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeIn 1s 0.8s forwards;
+    }
+    .stat-cell {
+      background: var(--bg);
+      padding: 2rem;
+    }
+    .stat-cell:hover { background: var(--surface); }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-desc {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 7rem 4rem;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--bright);
+      line-height: 1.15;
+      max-width: 22ch;
+      margin-bottom: 3.5rem;
+    }
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-body p {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      max-width: 60ch;
+    }
+    .about-body p strong {
+      color: var(--bright);
+      font-weight: 500;
+    }
+    .about-aside {
+      border-left: 1px solid var(--border);
+      padding-left: 2.5rem;
+    }
+    .aside-item {
+      margin-bottom: 2rem;
+    }
+    .aside-item-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .aside-item-value {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .project-item {
+      background: var(--bg);
+      padding: 2.5rem 3rem;
+      display: grid;
+      grid-template-columns: 3rem 1fr auto;
+      gap: 2rem;
+      align-items: start;
+      transition: background 0.2s;
+      cursor: default;
+    }
+    .project-item:hover { background: var(--surface); }
+    .project-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      padding-top: 0.3rem;
+    }
+    .project-content {}
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: var(--bright);
+      margin-bottom: 0.5rem;
+    }
+    .project-problem {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 70ch;
+      margin-bottom: 1rem;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.7rem;
+      color: var(--muted);
+    }
+    .project-item:hover .tag { border-color: #2a2a2a; color: var(--text); }
+    .project-result {
+      text-align: right;
+      min-width: 9rem;
+    }
+    .result-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .result-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── STACK ── */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .stack-cell {
+      background: var(--bg);
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+    .stack-cell:hover { background: var(--surface); }
+    .stack-category {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .stack-items {
+      list-style: none;
+    }
+    .stack-items li {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .stack-items li:last-child { border-bottom: none; }
+
+    /* ── PHILOSOPHY ── */
+    .philosophy-block {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .philosophy-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-style: italic;
+      color: var(--bright);
+      line-height: 1.5;
+      margin-bottom: 2rem;
+    }
+    .philosophy-note {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .divider {
+      width: 1px;
+      height: 4rem;
+      background: var(--border);
+      margin: 3rem auto;
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      text-decoration: none;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent); background: var(--accent-dim); }
+    .contact-link-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+    .contact-link-value {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .contact-link-icon {
+      font-size: 1.2rem;
+      color: var(--accent);
+      min-width: 2rem;
+    }
+    .contact-note {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 42ch;
+      margin-bottom: 2rem;
+    }
+    .contact-note strong { color: var(--text); font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.5rem 2rem; }
+      .hero { grid-template-columns: 1fr; padding: 8rem 2rem 4rem; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      section { padding: 5rem 2rem; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-aside { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 2rem; }
+      .stack-grid { grid-template-columns: 1fr 1fr; }
+      .project-item { grid-template-columns: 2rem 1fr; }
+      .project-result { display: none; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">EC</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <p class="hero-label">Edoardo Crema · Milan, IT</p>
+    <h1 class="hero-title">Firm Consultant.<br><em>End to end.</em></h1>
+    <p class="hero-subtitle">I bridge business problems and technical solutions — from the boardroom brief to the model in production. No handoffs. No black boxes.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">See the work</a>
+      <a href="#contact" class="btn-ghost">Get in touch →</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-cell">
+      <div class="stat-num">4+</div>
+      <div class="stat-desc">Years in multinational industrial contexts</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">60M+</div>
+      <div class="stat-desc">Rows of data processed and modelled</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">100+</div>
+      <div class="stat-desc">Directional dashboards shipped</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">−14%</div>
+      <div class="stat-desc">FTE reduction demonstrated via ODE modelling</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label reveal">About</p>
+  <h2 class="section-title reveal">A consultant who <em>writes the code</em> himself.</h2>
+  <div class="about-grid">
+    <div class="about-body reveal">
+      <p>I don't coordinate developers. I don't hand specs to a data team. I sit with leadership, understand the strategic problem, then go design and build the technical solution from scratch — pipeline, model, dashboard, report.</p>
+      <p>My background is deliberately unconventional: a <strong>Master's in Philosophy</strong> (110L cum laude) followed by <strong>Industrial Management Engineering</strong> currently in progress. Philosophy trained me in rigorous argument and systems thinking. Engineering gave me the quantitative grammar. Data science is where both converge into something useful.</p>
+      <p>Today I support <strong>two business units of 450+ people each</strong> at a multinational, handling forecasting, process engineering, retention modelling, and ETL architecture — all end to end, all in production.</p>
+      <p>I'm oriented toward <strong>high-intensity analytical roles</strong> in finance, consulting, and tech — anywhere the gap between "business problem" and "working solution" needs to be closed by one person who speaks both languages fluently.</p>
+    </div>
+    <div class="about-aside reveal">
+      <div class="aside-item">
+        <div class="aside-item-label">Current role</div>
+        <div class="aside-item-value">Data Analyst & Data Scientist<br>Mérieux NutriSciences</div>
+      </div>
+      <div class="aside-item">
+        <div class="aside-item-label">Education</div>
+        <div class="aside-item-value">
+          MSc Philosophy — Ca' Foscari (110L)<br>
+          BSc Philosophy — Ca' Foscari (110L)<br>
+          Industrial Mgmt Eng. — Udine (ongoing)
+        </div>
+      </div>
+      <div class="aside-item">
+        <div class="aside-item-label">Focus areas</div>
+        <div class="aside-item-value">Finance · Operations · Consulting · Tech</div>
+      </div>
+      <div class="aside-item">
+        <div class="aside-item-label">Languages</div>
+        <div class="aside-item-value">Italian (native) · English (B2, technical)</div>
+      </div>
+      <div class="aside-item">
+        <div class="aside-item-label">GitHub</div>
+        <div class="aside-item-value"><a href="https://github.com/edoardo2496" style="color:var(--accent);text-decoration:none;">github.com/edoardo2496</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label reveal">Selected Work</p>
+  <h2 class="section-title reveal">Problems solved,<br><em>technically</em>.</h2>
+  <div class="projects-list reveal">
+
+    <div class="project-item">
+      <div class="project-num">01</div>
+      <div class="project-content">
+        <div class="project-problem">Business problem → Workforce planning</div>
+        <div class="project-title">ODE-based Operational Flow Model</div>
+        <p class="project-desc">Management needed to understand whether current staffing levels were truly necessary. I modelled the department's operational flows as a system of ordinary differential equations — mapping workload dynamics, inter-task dependencies, and capacity constraints over time. The model, currently in production, demonstrated that a 14% FTE reduction was achievable while maintaining existing output volumes, enabling targeted redeployment rather than cuts.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">SciPy ODE</span>
+          <span class="tag">Mathematical Modelling</span>
+          <span class="tag">Operations</span>
+          <span class="tag">In Production</span>
+        </div>
+      </div>
+      <div class="project-result">
+        <div class="result-value">−14%</div>
+        <div class="result-label">FTE reduction<br>demonstrated</div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">02</div>
+      <div class="project-content">
+        <div class="project-problem">Business problem → Revenue forecasting</div>
+        <div class="project-title">Monte Carlo Revenue Simulation — FY2027</div>
+        <p class="project-desc">Finance leadership needed a probabilistic view of FY2027 revenue, not a single-point forecast. I designed and built a full Monte Carlo simulation engine that models revenue distribution by sales cluster, incorporating historical variance, seasonality, and scenario assumptions. The output — a probability distribution with confidence bands per cluster — now directly informs strategic planning decisions at the senior management level.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Monte Carlo</span>
+          <span class="tag">Statistical Modelling</span>
+          <span class="tag">Finance</span>
+          <span class="tag">Forecasting</span>
+        </div>
+      </div>
+      <div class="project-result">
+        <div class="result-value">FY27</div>
+        <div class="result-label">Strategic<br>planning input</div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">03</div>
+      <div class="project-content">
+        <div class="project-problem">Business problem → Talent retention</div>
+        <div class="project-title">Candidate Retention Probability Model</div>
+        <p class="project-desc">HR recruiting was investing equally in all candidates without knowing who would stay. I built and deployed a logistic regression model trained on historical employee data to estimate long-term retention probability at the point of hiring. Currently in production: the model now shapes recruiting strategy by surfacing candidates with the highest likelihood of permanence, reducing attrition cost before it occurs.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Scikit-learn</span>
+          <span class="tag">Logistic Regression</span>
+          <span class="tag">HR Analytics</span>
+          <span class="tag">In Production</span>
+        </div>
+      </div>
+      <div class="project-result">
+        <div class="result-value">Live</div>
+        <div class="result-label">Drives recruiting<br>strategy</div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">04</div>
+      <div class="project-content">
+        <div class="project-problem">Business problem → Data infrastructure</div>
+        <div class="project-title">Multi-Source ETL Pipeline & Unified Revenue Layer</div>
+        <p class="project-desc">Revenue data was siloed across three heterogeneous ERP systems — OLAP cubes (DMX) and relational databases — making consolidated reporting impossible. I designed and implemented an end-to-end ETL pipeline: extraction via Python connectors, transformation and harmonisation including transcoding and business logic, and consolidation into a centralised PostgreSQL data layer. This was the company's first unified revenue dataset, built from zero, and became the foundation for all directional BI reporting.</p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">ETL</span>
+          <span class="tag">DMX / OLAP</span>
+          <span class="tag">SQLAlchemy</span>
+          <span class="tag">Data Architecture</span>
+        </div>
+      </div>
+      <div class="project-result">
+        <div class="result-value">3→1</div>
+        <div class="result-label">ERPs unified<br>from scratch</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <p class="section-label reveal">Technical Stack</p>
+  <h2 class="section-title reveal">What I use to<br><em>close the loop</em>.</h2>
+  <div class="stack-grid reveal">
+    <div class="stack-cell">
+      <div class="stack-category">Languages</div>
+      <ul class="stack-items">
+        <li>Python (primary)</li>
+        <li>SQL (advanced)</li>
+        <li>R / RStudio</li>
+        <li>M Language (PowerQuery)</li>
+        <li>DMX (OLAP cubes)</li>
+      </ul>
+    </div>
+    <div class="stack-cell">
+      <div class="stack-category">Modelling</div>
+      <ul class="stack-items">
+        <li>ODE systems (SciPy)</li>
+        <li>Monte Carlo simulation</li>
+        <li>Logistic regression</li>
+        <li>Churn prediction</li>
+        <li>Time series / Prophet</li>
+      </ul>
+    </div>
+    <div class="stack-cell">
+      <div class="stack-category">Data & BI</div>
+      <ul class="stack-items">
+        <li>PostgreSQL · Oracle · Access</li>
+        <li>Apache Superset</li>
+        <li>Power BI</li>
+        <li>Looker Studio</li>
+        <li>pandas · numpy · scikit-learn</li>
+      </ul>
+    </div>
+    <div class="stack-cell">
+      <div class="stack-category">Process</div>
+      <ul class="stack-items">
+        <li>ETL pipeline design</li>
+        <li>Process mapping & Lean</li>
+        <li>KPI architecture</li>
+        <li>Git · Jupyter · Colab</li>
+        <li>Excel (advanced)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section style="border-top: 1px solid var(--border); padding: 6rem 4rem;">
+  <div class="philosophy-block reveal">
+    <div class="divider"></div>
+    <p class="philosophy-quote">"A consultant's value isn't the deck. It's the ability to understand the problem deeply enough to build the solution yourself — then explain it simply enough that leadership acts on it."</p>
+    <p class="philosophy-note">— The operating principle behind every engagement</p>
+    <div class="divider"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label reveal">Contact</p>
+  <h2 class="section-title reveal">Let's work on something<br><em>that matters</em>.</h2>
+  <div class="contact-grid">
+    <div class="reveal">
+      <p class="contact-note">I'm open to conversations about <strong>consulting engagements, full-time roles, and analytical challenges</strong> where the gap between business and technology needs to be closed. If you're building something where rigour matters, I'd like to hear about it.</p>
+      <a href="https://edoardocrema.it" class="btn-primary" target="_blank">Visit edoardocrema.it</a>
+    </div>
+    <div class="contact-links reveal">
+      <a href="mailto:edoardo.crema@outlook.it" class="contact-link">
+        <div class="contact-link-icon">✉</div>
+        <div>
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-value">edoardo.crema@outlook.it</div>
+        </div>
+      </a>
+      <a href="https://github.com/edoardo2496" class="contact-link" target="_blank">
+        <div class="contact-link-icon">⌥</div>
+        <div>
+          <div class="contact-link-label">GitHub</div>
+          <div class="contact-link-value">github.com/edoardo2496</div>
+        </div>
+      </a>
+      <a href="tel:+393388601102" class="contact-link">
+        <div class="contact-link-icon">◎</div>
+        <div>
+          <div class="contact-link-label">Phone</div>
+          <div class="contact-link-value">+39 338 860 1102</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>Edoardo Crema · edoardo2496.github.io</span>
+  <span>Built with intent, not a template.</span>
+</footer>
+
+<script>
+  // Scroll-triggered nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
