@@ -8,14 +8,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0a0a;
-      --surface: #111111;
-      --border: #1e1e1e;
+      --bg: #071a0f;
+      --surface: #0d2416;
+      --border: #163520;
       --accent: #c8a96e;
-      --accent-dim: rgba(200,169,110,0.15);
-      --text: #e8e4dc;
-      --muted: #6b6560;
-      --bright: #f5f0e8;
+      --accent-dim: rgba(200,169,110,0.12);
+      --text: #b8d4b0;
+      --muted: #3d6b4a;
+      --bright: #edf5e8;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -549,13 +549,13 @@
     <div class="about-body reveal">
       <p>I don't coordinate developers. I don't hand specs to a data team. I sit with leadership, understand the strategic problem, then go design and build the technical solution from scratch — pipeline, model, dashboard, report.</p>
       <p>My background is deliberately unconventional: a <strong>Master's in Philosophy</strong> (110L cum laude) followed by <strong>Industrial Management Engineering</strong> currently in progress. Philosophy trained me in rigorous argument and systems thinking. Engineering gave me the quantitative grammar. Data science is where both converge into something useful.</p>
-      <p>Today I support <strong>two business units of 450+ people each</strong> at a multinational, handling forecasting, process engineering, retention modelling, and ETL architecture — all end to end, all in production.</p>
-      <p>I'm oriented toward <strong>high-intensity analytical roles</strong> in finance, consulting, and tech — anywhere the gap between "business problem" and "working solution" needs to be closed by one person who speaks both languages fluently.</p>
+      <p>Over four years embedded in a multinational industrial environment, I worked across <strong>two business units of 450+ people each</strong> — building forecasting models, redesigning reporting pipelines, engineering processes, and putting predictive models into production. All of it end to end, without a team to delegate to.</p>
+      <p>Today I operate as an <strong>independent consultant</strong>, designing and delivering data and process solutions for SMEs — from lightweight web tools that digitise field operations, to analytical architectures that turn raw operational data into management accounts.</p>
     </div>
     <div class="about-aside reveal">
       <div class="aside-item">
-        <div class="aside-item-label">Current role</div>
-        <div class="aside-item-value">Data Analyst & Data Scientist<br>Mérieux NutriSciences</div>
+        <div class="aside-item-label">Currently</div>
+        <div class="aside-item-value">Independent Consultant<br>Data · Process · Technology</div>
       </div>
       <div class="aside-item">
         <div class="aside-item-label">Education</div>
@@ -668,6 +668,56 @@
       </div>
     </div>
 
+    <div class="project-item">
+      <div class="project-num">05</div>
+      <div class="project-content">
+        <div class="project-problem">Client: Edilcrema snc · Business problem → Field operations digitisation</div>
+        <div class="project-title">SIS — Purchase Order Management Web App</div>
+        <p class="project-desc">Site managers were tracking purchase orders on paper or informal messages, making cost control per project impossible. I designed and built a zero-dependency web app — deployed on GitHub Pages — that lets field staff log orders with supplier, site, material, quantity, and unit price. Data flows via Google Apps Script into Google Sheets, then into a local SQLite database via a scheduled Python sync, feeding job-level P&L and management accounts. Suppliers and sites load dynamically; order status is tracked end to end (Sent → Confirmed → Received → Invoiced).</p>
+        <div class="project-tags">
+          <span class="tag">HTML / CSS / JS</span>
+          <span class="tag">Google Apps Script</span>
+          <span class="tag">Google Sheets</span>
+          <span class="tag">Python</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">GitHub Pages</span>
+          <span class="tag">Live</span>
+        </div>
+        <div style="margin-top:0.8rem;">
+          <a href="https://edoardo2496.github.io/sis/gestionale-acquisti" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-dim);padding-bottom:1px;">↗ View live app</a>
+        </div>
+      </div>
+      <div class="project-result">
+        <div class="result-value">Live</div>
+        <div class="result-label">Field-to-P&L<br>in one flow</div>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-num">06</div>
+      <div class="project-content">
+        <div class="project-problem">Client: Edilcrema snc · Business problem → Labour costing</div>
+        <div class="project-title">SIS — Site Labour Hours Tracking App</div>
+        <p class="project-desc">Labour costs were invisible at the job level — no structured way for site foremen to report hours by project, work type, or worker. I built a mobile-first web app designed for use on-site: quick-entry buttons for common hour increments, ordinary vs overtime split, work category classification (masonry, excavation, carpentry, finishes, etc.). Data feeds the same Google Sheets → SQLite pipeline, enabling real unit cost per work type, actual vs budgeted labour variance, and a complete job-level cost account — built from field data collected by the people doing the work.</p>
+        <div class="project-tags">
+          <span class="tag">HTML / CSS / JS</span>
+          <span class="tag">Mobile-first</span>
+          <span class="tag">Google Apps Script</span>
+          <span class="tag">Python</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">Industrial Costing</span>
+          <span class="tag">Live</span>
+        </div>
+        <div style="margin-top:0.8rem;">
+          <a href="https://edoardo2496.github.io/sis/registrazione-ore-personale" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-dim);padding-bottom:1px;">↗ View live app</a>
+        </div>
+      </div>
+      <div class="project-result">
+        <div class="result-value">0→1</div>
+        <div class="result-label">Labour costing<br>built from scratch</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -739,11 +789,11 @@
       <a href="https://edoardocrema.it" class="btn-primary" target="_blank">Visit edoardocrema.it</a>
     </div>
     <div class="contact-links reveal">
-      <a href="mailto:edoardo.crema@outlook.it" class="contact-link">
+      <a href="/cdn-cgi/l/email-protection#d2b7b6bdb3a0b6bdfcb1a0b7bfb392bda7a6bebdbdb9fcbba6" class="contact-link">
         <div class="contact-link-icon">✉</div>
         <div>
           <div class="contact-link-label">Email</div>
-          <div class="contact-link-value">edoardo.crema@outlook.it</div>
+          <div class="contact-link-value"><span class="__cf_email__" data-cfemail="1f7a7b707e6d7b70317c6d7a727e5f706a6b7370707431766b">[email&#160;protected]</span></div>
         </div>
       </a>
       <a href="https://github.com/edoardo2496" class="contact-link" target="_blank">
@@ -770,7 +820,7 @@
   <span>Built with intent, not a template.</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Scroll-triggered nav
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
@@ -781,14 +831,4 @@
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-</script>
-
-</body>
-</html>
+      if (en
