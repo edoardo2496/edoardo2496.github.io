@@ -717,7 +717,30 @@
         <div class="result-label">Labour costing<br>built from scratch</div>
       </div>
     </div>
-
+<div class="project-item">
+      <div class="project-num">07</div>
+      <div class="project-content">
+        <div class="project-problem">Personal research → Stochastic finance & commodity modelling</div>
+        <div class="project-title">Ornstein-Uhlenbeck Commodity Price Model — Iron Ore</div>
+        <p class="project-desc">Iron ore prices exhibit mean-reversion — a property that standard time-series models ignore. I modelled the price process as an Ornstein-Uhlenbeck SDE: dX = θ(μ−X)dt + σdW, then derived the closed-form solution via Itô's Lemma, yielding an analytically exact expression for E[S_t] and Var[S_t] at any horizon. Parameters θ, μ, σ were calibrated on 20 years of monthly data (2005–2026); stationarity was verified via ADF test (p = 0.013). A Monte Carlo engine runs 5,000 trajectories to produce a fan chart with full confidence bands. The result is a live procurement signal: a Z-score that flags whether the current spot price represents a statistically anomalous buying opportunity or an elevated-risk entry point.</p>
+        <div class="project-tags">
+          <span class="tag">Stochastic Calculus</span>
+          <span class="tag">Itô's Lemma</span>
+          <span class="tag">Ornstein-Uhlenbeck</span>
+          <span class="tag">Monte Carlo · 5,000 paths</span>
+          <span class="tag">Python</span>
+          <span class="tag">ADF Test</span>
+          <span class="tag">Live Dashboard</span>
+        </div>
+        <div style="margin-top:0.8rem;">
+          <a href="https://edoardo2496.github.io/data_science_portfolio/stochastic_iro_ore_model/index.html" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-dim);padding-bottom:1px;">↗ View live dashboard</a>
+        </div>
+      </div>
+      <div class="project-result">
+        <div class="result-value">dX</div>
+        <div class="result-label">SDE solved<br>via Itô's Lemma</div>
+      </div>
+    </div>
   </div>
 </section>
 
