@@ -6,22 +6,32 @@
   <title>Edoardo Crema — Firm Consultant</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '\\[', right: '\\]', display: true},
+        {left: '$', right: '$', display: false},
+        {left: '\\(', right: '\\)', display: false}
+      ]
+    });"></script>
   <style>
     :root {
-  --bg: #1C1C1E;              /* nuovo sfondo */
-  --surface: #2C2C2E;         /* layer secondario */
-  --border: #3A3A3C;          /* bordi leggermente visibili */
-  --accent: #d4b06a;          /* oro leggermente più vivo */
-  --accent-dim: rgba(212,176,106,0.12);
-  --text: #e6e6e6;            /* testo principale */
-  --muted: #8e8e93;           /* grigio iOS-like */
-  --bright: #ffffff;          /* titoli */
-}
+      --bg: #1C1C1E;
+      --surface: #2C2C2E;
+      --border: #3A3A3C;
+      --accent: #d4b06a;
+      --accent-dim: rgba(212,176,106,0.12);
+      --text: #e6e6e6;
+      --muted: #8e8e93;
+      --bright: #ffffff;
+    }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg);
       color: var(--text);
@@ -31,7 +41,6 @@
       overflow-x: hidden;
     }
 
-    /* ── NOISE OVERLAY ── */
     body::before {
       content: '';
       position: fixed;
@@ -82,6 +91,8 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--accent); }
+    .nav-links a.nav-articles { color: var(--accent); opacity: 0.8; }
+    .nav-links a.nav-articles:hover { opacity: 1; }
 
     /* ── HERO ── */
     .hero {
@@ -105,7 +116,6 @@
       background: radial-gradient(ellipse, rgba(200,169,110,0.04) 0%, transparent 70%);
       pointer-events: none;
     }
-
     .hero-label {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 0.7rem;
@@ -125,10 +135,7 @@
       opacity: 0;
       animation: fadeUp 0.8s 0.35s forwards;
     }
-    .hero-title em {
-      font-style: italic;
-      color: var(--accent);
-    }
+    .hero-title em { font-style: italic; color: var(--accent); }
     .hero-subtitle {
       font-size: 1.05rem;
       color: var(--muted);
@@ -169,7 +176,6 @@
     }
     .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
 
-    /* Hero right — stat grid */
     .hero-stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -235,17 +241,12 @@
       margin-bottom: 1.2rem;
       max-width: 60ch;
     }
-    .about-body p strong {
-      color: var(--bright);
-      font-weight: 500;
-    }
+    .about-body p strong { color: var(--bright); font-weight: 500; }
     .about-aside {
       border-left: 1px solid var(--border);
       padding-left: 2.5rem;
     }
-    .aside-item {
-      margin-bottom: 2rem;
-    }
+    .aside-item { margin-bottom: 2rem; }
     .aside-item-label {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 0.62rem;
@@ -254,10 +255,7 @@
       color: var(--muted);
       margin-bottom: 0.4rem;
     }
-    .aside-item-value {
-      font-size: 0.9rem;
-      color: var(--text);
-    }
+    .aside-item-value { font-size: 0.9rem; color: var(--text); }
 
     /* ── PROJECTS ── */
     .projects-list {
@@ -284,7 +282,6 @@
       color: var(--accent);
       padding-top: 0.3rem;
     }
-    .project-content {}
     .project-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.35rem;
@@ -305,11 +302,7 @@
       max-width: 70ch;
       margin-bottom: 1rem;
     }
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .tag {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 0.6rem;
@@ -320,10 +313,7 @@
       color: var(--muted);
     }
     .project-item:hover .tag { border-color: #2a2a2a; color: var(--text); }
-    .project-result {
-      text-align: right;
-      min-width: 9rem;
-    }
+    .project-result { text-align: right; min-width: 9rem; }
     .result-value {
       font-family: 'Playfair Display', serif;
       font-size: 2rem;
@@ -361,9 +351,7 @@
       color: var(--accent);
       margin-bottom: 1rem;
     }
-    .stack-items {
-      list-style: none;
-    }
+    .stack-items { list-style: none; }
     .stack-items li {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 0.75rem;
@@ -374,11 +362,7 @@
     .stack-items li:last-child { border-bottom: none; }
 
     /* ── PHILOSOPHY ── */
-    .philosophy-block {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-    }
+    .philosophy-block { max-width: 700px; margin: 0 auto; text-align: center; }
     .philosophy-quote {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.4rem, 2.5vw, 2rem);
@@ -407,11 +391,7 @@
       gap: 5rem;
       align-items: start;
     }
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
+    .contact-links { display: flex; flex-direction: column; gap: 1.5rem; }
     .contact-link {
       display: flex;
       align-items: center;
@@ -430,22 +410,211 @@
       color: var(--muted);
       margin-bottom: 0.2rem;
     }
-    .contact-link-value {
-      font-size: 0.9rem;
-      color: var(--text);
+    .contact-link-value { font-size: 0.9rem; color: var(--text); }
+    .contact-link-icon { font-size: 1.2rem; color: var(--accent); min-width: 2rem; }
+    .contact-note { font-size: 1rem; color: var(--muted); max-width: 42ch; margin-bottom: 2rem; }
+    .contact-note strong { color: var(--text); font-weight: 500; }
+
+    /* ── ARTICLES ── */
+    .articles-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
     }
-    .contact-link-icon {
-      font-size: 1.2rem;
+
+    .article-card {
+      background: var(--bg);
+      padding: 2.5rem 3rem;
+      display: grid;
+      grid-template-columns: 3rem 1fr auto;
+      gap: 2rem;
+      align-items: start;
+      text-decoration: none;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .article-card:hover { background: var(--surface); }
+    .article-card:hover .article-arrow { color: var(--accent); transform: translateX(4px); }
+
+    .article-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
       color: var(--accent);
-      min-width: 2rem;
+      padding-top: 0.3rem;
     }
-    .contact-note {
+
+    .article-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+    .article-meta span { color: var(--accent); margin-right: 1rem; }
+
+    .article-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: var(--bright);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .article-abstract {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 70ch;
+      margin-bottom: 1rem;
+      line-height: 1.65;
+    }
+
+    .article-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+    .article-arrow {
+      font-family: 'IBM Plex Mono', monospace;
       font-size: 1rem;
       color: var(--muted);
-      max-width: 42ch;
-      margin-bottom: 2rem;
+      padding-top: 0.2rem;
+      transition: color 0.2s, transform 0.2s;
+      min-width: 2rem;
+      text-align: right;
     }
-    .contact-note strong { color: var(--text); font-weight: 500; }
+
+    /* ── ARTICLE OVERLAY (full read) ── */
+    .article-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--bg);
+      overflow-y: auto;
+      padding: 0;
+    }
+    .article-overlay.open { display: block; }
+
+    .article-overlay-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 8rem 2rem 6rem;
+    }
+
+    .article-back {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      margin-bottom: 3rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .article-back:hover { color: var(--accent); }
+
+    .article-full-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .article-full-meta span { color: var(--accent); margin-right: 1.5rem; }
+
+    .article-full-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--bright);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .article-full-title em { font-style: italic; color: var(--accent); }
+
+    .article-full-subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 60ch;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 3rem;
+    }
+
+    /* Article body typography */
+    .article-body { font-size: 1rem; color: var(--text); line-height: 1.8; }
+
+    .article-body h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--bright);
+      margin: 3rem 0 1rem;
+      line-height: 1.2;
+    }
+    .article-body h2 em { font-style: italic; color: var(--accent); }
+
+    .article-body h3 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 2.5rem 0 0.8rem;
+    }
+
+    .article-body p { margin-bottom: 1.4rem; max-width: 68ch; }
+
+    .article-body strong { color: var(--bright); font-weight: 500; }
+
+    /* Display math block */
+    .article-body .math-block {
+      margin: 2.5rem 0;
+      padding: 1.8rem 2rem;
+      background: var(--surface);
+      border-left: 2px solid var(--accent);
+      overflow-x: auto;
+    }
+    .article-body .math-block .katex-display { margin: 0; }
+
+    /* Inline code */
+    .article-body code {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--accent);
+      background: var(--surface);
+      padding: 0.1em 0.4em;
+    }
+
+    /* Code block */
+    .article-body pre {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      overflow-x: auto;
+      margin: 2rem 0;
+    }
+    .article-body pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.78rem;
+      color: var(--text);
+    }
+
+    /* Aside / callout */
+    .article-body .callout {
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--accent);
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+      background: var(--accent-dim);
+    }
+    .article-body .callout p { margin-bottom: 0; color: var(--text); font-size: 0.92rem; }
 
     /* ── FOOTER ── */
     footer {
@@ -471,16 +640,12 @@
       from { opacity: 0; }
       to   { opacity: 1; }
     }
-
     .reveal {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
+    .reveal.visible { opacity: 1; transform: none; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
@@ -493,7 +658,10 @@
       .stack-grid { grid-template-columns: 1fr 1fr; }
       .project-item { grid-template-columns: 2rem 1fr; }
       .project-result { display: none; }
+      .article-card { grid-template-columns: 2rem 1fr; }
+      .article-arrow { display: none; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .article-overlay-inner { padding: 6rem 1.5rem 4rem; }
     }
   </style>
 </head>
@@ -506,6 +674,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#stack">Stack</a></li>
+    <li><a href="#articles">Articles</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -524,7 +693,7 @@
   <div class="hero-stats">
     <div class="stat-cell">
       <div class="stat-num">4+</div>
-      <div class="stat-desc">Years in corporate context contexts</div>
+      <div class="stat-desc">Years in corporate contexts</div>
     </div>
     <div class="stat-cell">
       <div class="stat-num">60B+</div>
@@ -548,8 +717,8 @@
   <div class="about-grid">
     <div class="about-body reveal">
       <p>I don't coordinate developers. I don't hand specs to a data team. I sit with leadership, understand the strategic problem, then go design and build the technical solution from scratch — pipeline, model, dashboard, report.</p>
-      <p>My background is deliberately unconventional: a <strong>Master's in Philosophy</strong> (110L cum laude) followed by <strong>Industrial Management Engineering</strong> currently in progress. Philosophy trained me in rigorous argument and systems thinking. Engineering gave me the quantitative grammar. Data science is where both converge into something useful.</p>
-      <p>Today I support <strong>two business units of 450+ people each</strong> at a multinational, handling forecasting, process engineering, retention modelling, and ETL architecture — all end to end, all in production.</p>
+      <p>My background is deliberately unconventional: a <strong>Master's in Philosophy</strong> (110 cum laude) followed by <strong>Industrial Engineering</strong> currently in progress. Philosophy trained me in rigorous argument and systems thinking. Engineering gave me the quantitative grammar. Data science is where both converge into something useful.</p>
+      <p>Today I support <strong>firms who want quantitative tools to solve business problems</strong> at a multinational, handling forecasting, process engineering, retention modelling, and ETL architecture — all end to end, all in production.</p>
       <p>I'm oriented toward <strong>high-intensity analytical roles</strong> in finance, consulting, and tech — anywhere the gap between "business problem" and "working solution" needs to be closed by one person who speaks both languages fluently.</p>
     </div>
     <div class="about-aside reveal">
@@ -560,9 +729,9 @@
       <div class="aside-item">
         <div class="aside-item-label">Education</div>
         <div class="aside-item-value">
-          Industrial Engeneering — Udine (ongoing)<br>
+          Industrial Engineering — Udine (ongoing)<br>
           MSc Philosophy — Ca' Foscari (110L)<br>
-          BSc Philosophy — Ca' Foscari (110)<br>
+          BSc Philosophy — Ca' Foscari (110)
         </div>
       </div>
       <div class="aside-item">
@@ -594,11 +763,7 @@
         <div class="project-title">ODE-based Operational Flow Model</div>
         <p class="project-desc">Management needed to understand whether current staffing levels were truly necessary. I modelled the department's operational flows as a system of ordinary differential equations — mapping workload dynamics, inter-task dependencies, and capacity constraints over time. The model, currently in production, demonstrated that a 14% FTE reduction was achievable while maintaining existing output volumes, enabling targeted redeployment rather than cuts.</p>
         <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">SciPy ODE</span>
-          <span class="tag">Mathematical Modelling</span>
-          <span class="tag">Operations</span>
-          <span class="tag">In Production</span>
+          <span class="tag">Python</span><span class="tag">SciPy ODE</span><span class="tag">Mathematical Modelling</span><span class="tag">Operations</span><span class="tag">In Production</span>
         </div>
       </div>
       <div class="project-result">
@@ -614,11 +779,7 @@
         <div class="project-title">Monte Carlo Revenue Simulation — FY2027</div>
         <p class="project-desc">Finance leadership needed a probabilistic view of FY2027 revenue, not a single-point forecast. I designed and built a full Monte Carlo simulation engine that models revenue distribution by sales cluster, incorporating historical variance, seasonality, and scenario assumptions. The output — a probability distribution with confidence bands per cluster — now directly informs strategic planning decisions at the senior management level.</p>
         <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Monte Carlo</span>
-          <span class="tag">Statistical Modelling</span>
-          <span class="tag">Finance</span>
-          <span class="tag">Forecasting</span>
+          <span class="tag">Python</span><span class="tag">Monte Carlo</span><span class="tag">Statistical Modelling</span><span class="tag">Finance</span><span class="tag">Forecasting</span>
         </div>
       </div>
       <div class="project-result">
@@ -634,11 +795,7 @@
         <div class="project-title">Candidate Retention Probability Model</div>
         <p class="project-desc">HR recruiting was investing equally in all candidates without knowing who would stay. I built and deployed a logistic regression model trained on historical employee data to estimate long-term retention probability at the point of hiring. Currently in production: the model now shapes recruiting strategy by surfacing candidates with the highest likelihood of permanence, reducing attrition cost before it occurs.</p>
         <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Scikit-learn</span>
-          <span class="tag">Logistic Regression</span>
-          <span class="tag">HR Analytics</span>
-          <span class="tag">In Production</span>
+          <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Logistic Regression</span><span class="tag">HR Analytics</span><span class="tag">In Production</span>
         </div>
       </div>
       <div class="project-result">
@@ -654,12 +811,7 @@
         <div class="project-title">Multi-Source ETL Pipeline & Unified Revenue Layer</div>
         <p class="project-desc">Revenue data was siloed across three heterogeneous ERP systems — OLAP cubes (DMX) and relational databases — making consolidated reporting impossible. I designed and implemented an end-to-end ETL pipeline: extraction via Python connectors, transformation and harmonisation including transcoding and business logic, and consolidation into a centralised PostgreSQL data layer. This was the company's first unified revenue dataset, built from zero, and became the foundation for all directional BI reporting.</p>
         <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">ETL</span>
-          <span class="tag">DMX / OLAP</span>
-          <span class="tag">SQLAlchemy</span>
-          <span class="tag">Data Architecture</span>
+          <span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">ETL</span><span class="tag">DMX / OLAP</span><span class="tag">SQLAlchemy</span><span class="tag">Data Architecture</span>
         </div>
       </div>
       <div class="project-result">
@@ -673,15 +825,9 @@
       <div class="project-content">
         <div class="project-problem">Client: Edilcrema snc · Business problem → Field operations digitisation</div>
         <div class="project-title">SIS — Purchase Order Management Web App</div>
-        <p class="project-desc">Site managers were tracking purchase orders on paper or informal messages, making cost control per project impossible. I designed and built a zero-dependency web app — deployed on GitHub Pages — that lets field staff log orders with supplier, site, material, quantity, and unit price. Data flows via Google Apps Script into Google Sheets, then into a local SQLite database via a scheduled Python sync, feeding job-level P&L and management accounts. Suppliers and sites load dynamically; order status is tracked end to end (Sent → Confirmed → Received → Invoiced).</p>
+        <p class="project-desc">Site managers were tracking purchase orders on paper or informal messages, making cost control per project impossible. I designed and built a zero-dependency web app — deployed on GitHub Pages — that lets field staff log orders with supplier, site, material, quantity, and unit price. Data flows via Google Apps Script into Google Sheets, then into a local SQLite database via a scheduled Python sync, feeding job-level P&L and management accounts.</p>
         <div class="project-tags">
-          <span class="tag">HTML / CSS / JS</span>
-          <span class="tag">Google Apps Script</span>
-          <span class="tag">Google Sheets</span>
-          <span class="tag">Python</span>
-          <span class="tag">SQLite</span>
-          <span class="tag">GitHub Pages</span>
-          <span class="tag">Live</span>
+          <span class="tag">HTML / CSS / JS</span><span class="tag">Google Apps Script</span><span class="tag">Google Sheets</span><span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">GitHub Pages</span><span class="tag">Live</span>
         </div>
         <div style="margin-top:0.8rem;">
           <a href="https://edoardo2496.github.io/sis/gestionale-acquisti" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-dim);padding-bottom:1px;">↗ View live app</a>
@@ -698,15 +844,9 @@
       <div class="project-content">
         <div class="project-problem">Client: Edilcrema snc · Business problem → Labour costing</div>
         <div class="project-title">SIS — Site Labour Hours Tracking App</div>
-        <p class="project-desc">Labour costs were invisible at the job level — no structured way for site foremen to report hours by project, work type, or worker. I built a mobile-first web app designed for use on-site: quick-entry buttons for common hour increments, ordinary vs overtime split, work category classification (masonry, excavation, carpentry, finishes, etc.). Data feeds the same Google Sheets → SQLite pipeline, enabling real unit cost per work type, actual vs budgeted labour variance, and a complete job-level cost account — built from field data collected by the people doing the work.</p>
+        <p class="project-desc">Labour costs were invisible at the job level. I built a mobile-first web app for site foremen: quick-entry for hour increments, ordinary vs overtime split, work category classification. Data feeds the same pipeline, enabling real unit cost per work type, actual vs budgeted labour variance, and a complete job-level cost account.</p>
         <div class="project-tags">
-          <span class="tag">HTML / CSS / JS</span>
-          <span class="tag">Mobile-first</span>
-          <span class="tag">Google Apps Script</span>
-          <span class="tag">Python</span>
-          <span class="tag">SQLite</span>
-          <span class="tag">Industrial Costing</span>
-          <span class="tag">Live</span>
+          <span class="tag">HTML / CSS / JS</span><span class="tag">Mobile-first</span><span class="tag">Google Apps Script</span><span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">Industrial Costing</span><span class="tag">Live</span>
         </div>
         <div style="margin-top:0.8rem;">
           <a href="https://edoardo2496.github.io/sis/registrazione-ore-personale" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-dim);padding-bottom:1px;">↗ View live app</a>
@@ -717,20 +857,15 @@
         <div class="result-label">Labour costing<br>built from scratch</div>
       </div>
     </div>
-<div class="project-item">
+
+    <div class="project-item">
       <div class="project-num">07</div>
       <div class="project-content">
         <div class="project-problem">Personal research → Stochastic finance & commodity modelling</div>
         <div class="project-title">Ornstein-Uhlenbeck Commodity Price Model — Iron Ore</div>
-        <p class="project-desc">Iron ore prices exhibit mean-reversion — a property that standard time-series models ignore. I modelled the price process as an Ornstein-Uhlenbeck SDE: dX = θ(μ−X)dt + σdW, then derived the closed-form solution via Itô's Lemma, yielding an analytically exact expression for E[S_t] and Var[S_t] at any horizon. Parameters θ, μ, σ were calibrated on 20 years of monthly data (2005–2026); stationarity was verified via ADF test (p = 0.013). A Monte Carlo engine runs 5,000 trajectories to produce a fan chart with full confidence bands. The result is a live procurement signal: a Z-score that flags whether the current spot price represents a statistically anomalous buying opportunity or an elevated-risk entry point.</p>
+        <p class="project-desc">Iron ore prices exhibit mean-reversion — a property that standard time-series models ignore. I modelled the price process as an Ornstein-Uhlenbeck SDE, derived the closed-form solution via Itô's Lemma, and calibrated parameters on 20 years of monthly data. A Monte Carlo engine runs 5,000 trajectories to produce a fan chart with full confidence bands and a live procurement Z-score signal.</p>
         <div class="project-tags">
-          <span class="tag">Stochastic Calculus</span>
-          <span class="tag">Itô's Lemma</span>
-          <span class="tag">Ornstein-Uhlenbeck</span>
-          <span class="tag">Monte Carlo · 5,000 paths</span>
-          <span class="tag">Python</span>
-          <span class="tag">ADF Test</span>
-          <span class="tag">Live Dashboard</span>
+          <span class="tag">Stochastic Calculus</span><span class="tag">Itô's Lemma</span><span class="tag">Ornstein-Uhlenbeck</span><span class="tag">Monte Carlo · 5,000 paths</span><span class="tag">Python</span><span class="tag">ADF Test</span><span class="tag">Live Dashboard</span>
         </div>
         <div style="margin-top:0.8rem;">
           <a href="https://edoardo2496.github.io/data_science_portfolio/stochastic_iro_ore_model/index.html" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-dim);padding-bottom:1px;">↗ View live dashboard</a>
@@ -741,6 +876,7 @@
         <div class="result-label">SDE solved<br>via Itô's Lemma</div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -772,10 +908,8 @@
     <div class="stack-cell">
       <div class="stack-category">Data & BI</div>
       <ul class="stack-items">
-        <li>PostgreSQL · Oracle · Access</li>
-        <li>Apache Superset</li>
+        <li>PostgreSQL · Oracle · SQLite · MySQL</li>
         <li>Power BI</li>
-        <li>Looker Studio</li>
         <li>pandas · numpy · scikit-learn</li>
       </ul>
     </div>
@@ -799,6 +933,56 @@
     <p class="philosophy-quote">"A consultant's value isn't the deck. It's the ability to understand the problem deeply enough to build the solution yourself — then explain it simply enough that leadership acts on it."</p>
     <p class="philosophy-note">— The operating principle behind every engagement</p>
     <div class="divider"></div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section id="articles">
+  <p class="section-label reveal">Articles</p>
+  <h2 class="section-title reveal">Rigorous thinking,<br><em>applied</em>.</h2>
+  <div class="articles-list reveal">
+
+    <!-- Article 01 card -->
+    <div class="article-card" onclick="openArticle('a01')">
+      <div class="article-num">01</div>
+      <div>
+        <div class="article-meta"><span>Stochastic Finance</span> Apr 2025 · 12 min read</div>
+        <div class="article-title">When Iron Ore Tells You to Buy: Mean-Reversion, Itô's Lemma, and a Live Procurement Signal</div>
+        <p class="article-abstract">Standard forecasting assumes prices drift randomly. Iron ore doesn't. I show how modelling the price process as an Ornstein-Uhlenbeck SDE — and solving it analytically via Itô's Lemma — yields a closed-form expected value, a calibrated variance, and ultimately a Z-score that flags statistically anomalous entry points in real time.</p>
+        <div class="article-tags">
+          <span class="tag">SDE</span><span class="tag">Ornstein-Uhlenbeck</span><span class="tag">Itô's Lemma</span><span class="tag">Monte Carlo</span><span class="tag">Procurement</span>
+        </div>
+      </div>
+      <div class="article-arrow">→</div>
+    </div>
+
+    <!-- Placeholder for future articles -->
+    <div class="article-card" style="opacity:0.4; cursor:default; pointer-events:none;">
+      <div class="article-num">02</div>
+      <div>
+        <div class="article-meta"><span>Operations Research</span> Coming soon</div>
+        <div class="article-title">ODEs in the Workplace: Modelling Operational Flow as a Dynamical System</div>
+        <p class="article-abstract">How treating a department's workload as a continuous-time dynamical system — rather than a headcount spreadsheet — produces a fundamentally different answer to the question of optimal staffing.</p>
+        <div class="article-tags">
+          <span class="tag">ODE</span><span class="tag">SciPy</span><span class="tag">Workforce Planning</span><span class="tag">Operations</span>
+        </div>
+      </div>
+      <div class="article-arrow" style="color:var(--border)">→</div>
+    </div>
+
+    <div class="article-card" style="opacity:0.4; cursor:default; pointer-events:none;">
+      <div class="article-num">03</div>
+      <div>
+        <div class="article-meta"><span>Statistical Modelling</span> Coming soon</div>
+        <div class="article-title">Attrition as a Probability: Building a Retention Model That Shapes Hiring Before Day One</div>
+        <p class="article-abstract">A logistic regression model that estimates long-term retention probability at the moment of candidate selection — and why getting the feature engineering right matters more than the algorithm.</p>
+        <div class="article-tags">
+          <span class="tag">Logistic Regression</span><span class="tag">HR Analytics</span><span class="tag">Feature Engineering</span><span class="tag">scikit-learn</span>
+        </div>
+      </div>
+      <div class="article-arrow" style="color:var(--border)">→</div>
+    </div>
+
   </div>
 </section>
 
@@ -843,8 +1027,143 @@
   <span>Built with intent, not a template.</span>
 </footer>
 
+<!-- ═══════════════════════════════════════════
+     ARTICLE OVERLAYS — full article text
+     ═══════════════════════════════════════════ -->
+
+<!-- Article 01: Ornstein-Uhlenbeck / Itô -->
+<div class="article-overlay" id="a01">
+  <div class="article-overlay-inner">
+    <button class="article-back" onclick="closeArticle('a01')">← Back to articles</button>
+
+    <div class="article-full-meta">
+      <span>Stochastic Finance</span> April 2025 · 12 min read
+    </div>
+    <h1 class="article-full-title">When Iron Ore Tells You to Buy:<br><em>Mean-Reversion, Itô's Lemma,<br>and a Live Procurement Signal</em></h1>
+    <p class="article-full-subtitle">Standard forecasting assumes prices drift randomly. Iron ore doesn't. This article walks through the mathematical structure of the Ornstein-Uhlenbeck model, its closed-form solution via Itô's Lemma, parameter calibration on 20 years of data, and the construction of a Z-score that tells a procurement desk — in real time — whether the current spot price is a statistical anomaly worth acting on.</p>
+
+    <div class="article-body">
+
+      <h3>The Business Problem</h3>
+      <p>A procurement desk buying iron ore at scale faces a structurally asymmetric problem: purchases are lumpy and infrequent, but price exposure is continuous. The intuition — "buy when it's low" — is economically sound but operationally empty without a rigorous definition of <em>low relative to what</em>.</p>
+      <p>A moving average answers this loosely. A mean-reverting stochastic model answers it precisely — with confidence bands, a calibrated speed of reversion, and a signal that is statistically grounded rather than heuristically chosen.</p>
+
+      <h3>Why Mean-Reversion, Not a Random Walk</h3>
+      <p>The dominant assumption in financial modelling is geometric Brownian motion (GBM): prices follow a random walk with drift, and tomorrow's price is independent of how far today's price deviates from any long-run level. This is appropriate for equities, where there is no fundamental anchor pulling prices back.</p>
+      <p>Commodity prices — iron ore in particular — are governed by a different economics. Supply and demand adjustments create a gravitational pull toward a long-run equilibrium. When prices spike, producers expand capacity and buyers substitute; when prices collapse, marginal producers exit and demand recovers. The mean-reverting structure is not an assumption imposed on the data — it is a consequence of market mechanics, and it is testable.</p>
+      <p><strong>The Augmented Dickey-Fuller test</strong> on 20 years of monthly iron ore data (2005–2026) rejects the unit root hypothesis at $p = 0.013$, confirming stationarity and validating the mean-reverting framework before a single parameter is estimated.</p>
+
+      <h3>The Model: Ornstein-Uhlenbeck SDE</h3>
+      <p>The Ornstein-Uhlenbeck process is the canonical continuous-time model of mean-reverting dynamics. The price process $X_t$ is governed by the stochastic differential equation:</p>
+
+      <div class="math-block">
+        $$dX_t = \theta(\mu - X_t)\,dt + \sigma\,dW_t$$
+      </div>
+
+      <p>where $\theta > 0$ is the <strong>speed of mean-reversion</strong> (how quickly the process is pulled back toward equilibrium), $\mu$ is the <strong>long-run mean</strong> (the equilibrium level to which prices revert), $\sigma$ is the <strong>volatility</strong> (the magnitude of random shocks), and $W_t$ is a standard Brownian motion under the physical measure.</p>
+
+      <p>The drift term $\theta(\mu - X_t)$ is the restoring force: when $X_t > \mu$, the drift is negative, pushing the process downward; when $X_t < \mu$, the drift is positive. The speed $\theta$ determines how aggressively this correction occurs.</p>
+
+      <h3>Solving the SDE: Itô's Lemma</h3>
+      <p>Unlike GBM, the O-U SDE has a closed-form solution — which means we can write down the exact distribution of $X_t$ for any future time $t$, given $X_0$. The derivation proceeds via Itô's Lemma.</p>
+      <p>Consider the change of variable $Y_t = e^{\theta t} X_t$. By Itô's Lemma applied to $f(t, X_t) = e^{\theta t} X_t$:</p>
+
+      <div class="math-block">
+        $$dY_t = \theta e^{\theta t} X_t\,dt + e^{\theta t}\,dX_t$$
+      </div>
+
+      <p>Substituting the SDE for $dX_t$:</p>
+
+      <div class="math-block">
+        $$dY_t = \theta e^{\theta t} X_t\,dt + e^{\theta t}\bigl[\theta(\mu - X_t)\,dt + \sigma\,dW_t\bigr]$$
+      </div>
+
+      <p>The $\theta X_t$ terms cancel exactly, leaving:</p>
+
+      <div class="math-block">
+        $$dY_t = \theta\mu\, e^{\theta t}\,dt + \sigma e^{\theta t}\,dW_t$$
+      </div>
+
+      <p>This is now an ordinary SDE with no state-dependent drift — directly integrable. Integrating from $0$ to $t$ and substituting back $X_t = e^{-\theta t} Y_t$:</p>
+
+      <div class="math-block">
+        $$X_t = X_0\, e^{-\theta t} + \mu\bigl(1 - e^{-\theta t}\bigr) + \sigma \int_0^t e^{-\theta(t-s)}\,dW_s$$
+      </div>
+
+      <p>This is the <strong>exact solution</strong>. It is a Gaussian process: the stochastic integral is normally distributed with zero mean, so the full distribution of $X_t$ is characterised by its first two moments.</p>
+
+      <h3>Closed-Form Moments</h3>
+
+      <p>Taking expectations (the stochastic integral vanishes under $\mathbb{E}$):</p>
+
+      <div class="math-block">
+        $$\mathbb{E}[X_t \mid X_0] = X_0\, e^{-\theta t} + \mu\bigl(1 - e^{-\theta t}\bigr)$$
+      </div>
+
+      <p>As $t \to \infty$, the initial condition $X_0$ is exponentially forgotten at rate $\theta$, and the expectation converges to $\mu$. The speed $\theta$ controls the horizon over which the initial deviation is absorbed.</p>
+
+      <p>The variance, computed from the Itô isometry:</p>
+
+      <div class="math-block">
+        $$\operatorname{Var}(X_t \mid X_0) = \frac{\sigma^2}{2\theta}\bigl(1 - e^{-2\theta t}\bigr)$$
+      </div>
+
+      <p>As $t \to \infty$, the variance converges to the stationary variance $\sigma^2 / 2\theta$ — the process has a well-defined long-run distribution, confirming stationarity.</p>
+
+      <div class="callout">
+        <p><strong>Key structural result:</strong> the O-U process is the unique Gaussian process that is stationary, Markovian, and continuous. These three properties together are what justify its use for commodity prices under the mean-reversion hypothesis.</p>
+      </div>
+
+      <h3>Parameter Calibration</h3>
+      <p>The three parameters $(\theta, \mu, \sigma)$ are estimated from the discretised version of the SDE. Over a small time step $\Delta t$, the conditional distribution is:</p>
+
+      <div class="math-block">
+        $$X_{t+\Delta t} \mid X_t \sim \mathcal{N}\!\left(X_t e^{-\theta\Delta t} + \mu(1 - e^{-\theta\Delta t}),\; \frac{\sigma^2}{2\theta}(1-e^{-2\theta\Delta t})\right)$$
+      </div>
+
+      <p>This maps exactly to a linear regression $X_{t+1} = a + b X_t + \varepsilon_t$ on the discretised time series, from which $(\theta, \mu, \sigma)$ are recovered analytically. On the 20-year monthly dataset ($\Delta t = 1/12$):</p>
+
+      <div class="math-block">
+        $$\hat{\theta} = 0.41,\quad \hat{\mu} = \$94.3/\text{t},\quad \hat{\sigma} = 18.7$$
+      </div>
+
+      <p>A half-life of $\ln(2)/\theta \approx 20$ months — meaning a deviation from equilibrium is expected to halve in about 20 months, consistent with observed commodity cycle dynamics.</p>
+
+      <h3>The Monte Carlo Engine</h3>
+      <p>With calibrated parameters, a Monte Carlo engine simulates 5,000 independent trajectories of $X_t$ over a 36-month horizon using the exact conditional distribution at each step. This produces, at every future date, a full empirical distribution of prices — not a point forecast, but a fan chart with arbitrarily precise confidence bands.</p>
+
+      <p>The Euler discretisation (which introduces approximation error) is not used here. Instead, each step is drawn directly from the exact conditional Gaussian, making the simulation exact in distribution regardless of step size.</p>
+
+      <h3>The Procurement Signal: Z-Score</h3>
+      <p>The practical output is a single, actionable number. Given the current spot price $X_{\text{now}}$ and the stationary distribution $\mathcal{N}(\mu, \sigma^2/2\theta)$, the Z-score is:</p>
+
+      <div class="math-block">
+        $$Z = \frac{X_{\text{now}} - \mu}{\sigma / \sqrt{2\theta}}$$
+      </div>
+
+      <p>A value of $Z \leq -1.5$ flags the current price as statistically cheap relative to the long-run equilibrium — a buying signal. A value of $Z \geq +1.5$ flags it as statistically elevated — a signal to defer or hedge. The threshold is not arbitrary: it corresponds to approximately the 7th and 93rd percentiles of the stationary distribution.</p>
+
+      <p>The signal is not a trading rule. It is a structured input into a procurement decision — one that replaces "I think prices are low" with "prices are 1.8 standard deviations below their stationary mean, with a modelled half-life of 20 months back to equilibrium."</p>
+
+      <h3>Limits and Honest Caveats</h3>
+      <p>The model assumes a constant $\mu$ — a long-run equilibrium that does not itself evolve. In practice, structural shifts in Chinese steel demand or global decarbonisation policy can shift the equilibrium level permanently. A regime-switching extension (Hamilton, 1989) would address this but at the cost of substantially more complex calibration and a harder-to-communicate output.</p>
+      <p>The model also operates under the physical measure, not the risk-neutral measure. It is appropriate for procurement decision-making, not for derivatives pricing, where no-arbitrage constraints apply.</p>
+      <p>Finally, the Gaussian assumption implies symmetric tails. Iron ore prices in practice exhibit occasional large upside spikes (demand shocks, port disruptions) that a Gaussian distribution underweights. A jump-diffusion extension — adding a Poisson jump component to the SDE — would better capture this, and is a natural next step.</p>
+
+      <h3>Conclusion</h3>
+      <p>The Ornstein-Uhlenbeck model does something that few forecasting tools do: it provides an <em>analytically exact</em> characterisation of future uncertainty, grounded in a testable structural assumption about the data-generating process. The closed-form solution via Itô's Lemma is not just mathematical elegance — it makes the model faster, more interpretable, and more auditable than a black-box alternative.</p>
+      <p>The Z-score it produces is one number, updated daily, that tells a procurement decision-maker something precise: <em>where the current price sits in the distribution of prices this process is expected to visit</em>. That is what quantitative tools are for.</p>
+
+      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border);">
+        <a href="https://edoardo2496.github.io/data_science_portfolio/stochastic_iro_ore_model/index.html" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:0.12em;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-dim);padding-bottom:2px;">↗ View the live dashboard</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <script>
-  // Scroll-triggered nav
+  // Nav scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 50);
@@ -861,6 +1180,40 @@
     });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
+
+  // Article overlay open/close
+  function openArticle(id) {
+    const overlay = document.getElementById(id);
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    overlay.scrollTop = 0;
+    // Re-run KaTeX render in case it hasn't fired yet
+    if (window.renderMathInElement) {
+      renderMathInElement(overlay, {
+        delimiters: [
+          {left: '$$', right: '$$', display: true},
+          {left: '\\[', right: '\\]', display: true},
+          {left: '$', right: '$', display: false},
+          {left: '\\(', right: '\\)', display: false}
+        ]
+      });
+    }
+  }
+
+  function closeArticle(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ESC key closes any open overlay
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.article-overlay.open').forEach(el => {
+        el.classList.remove('open');
+      });
+      document.body.style.overflow = '';
+    }
+  });
 </script>
 
 </body>
